@@ -18,6 +18,7 @@ const productsRoute = require("./app/routes/products");
 const artistRoute = require("./app/routes/artist");
 const eventsRoute = require("./app/routes/events");
 const runtimeConfig = require("./app/runtimeConfig");
+const morgan = require("morgan");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -53,6 +54,7 @@ app.set("trust proxy", 1);
 app.use(session(sess));
 app.use(limiter);
 app.use(express.json());
+app.use(morgan("tiny"));
 
 app.use(
   cors({
